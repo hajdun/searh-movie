@@ -1,5 +1,6 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
+import { SearchResult } from '../SearchResult'
 
 interface ISearchBar {}
 
@@ -10,16 +11,9 @@ query SearchMovies {
     name
     overview
     releaseDate
-    cast {
-      id
-      person {
-        name
-      }
-      role {
-        ... on Cast {
-          character
-        }
-      }
+    score
+    genres {
+      name
     }
   }
 }
@@ -36,12 +30,8 @@ const SearchBar: React.FC<ISearchBar> = () => {
       SEARCH
       <input type="text" />
       <ul>
-        {data.searchMovies.map(({ name, category, score }) => {
-          return <>
-          <div>{name}</div>
-          <div>{category}</div>
-          <div>{score}</div>
-          </>
+        {data.searchMovies.map(({ name: movieTitle, genres, score }) => {
+          return <SearchResult movieTitle={movieTitle} score={score} genres={genres}/>
         })}
       </ul>
     </div>

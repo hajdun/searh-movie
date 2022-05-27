@@ -1,0 +1,33 @@
+.searchResultContainer {
+    border: 2px solid black;
+    margin-bottom: 30px;
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+}
+
+.searchResultContainer:hover {
+    background-color: aliceblue;
+}
+
+.searchResultHighlight {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.name {
+    width: 260px;
+    margin-right: 20px;
+}
+
+.score {
+    width: 20px;
+    margin-right: 20px;
+}
+
+.genre {
+    width: 200px;
+}
