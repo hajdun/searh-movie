@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './SearchResult.module.css'
+import { v4 as uuidv4 } from 'uuid'
 
 type IGenre = {
   name: string;
@@ -16,7 +17,7 @@ const SearchResult: React.FC<ISearchResult> = ({
   score,
   genres
 }) => {
-  const isLastGenre = (index) => {
+  const isLastGenre = (index: number) => {
     return index === genres.length - 1
   }
 
@@ -27,7 +28,7 @@ const SearchResult: React.FC<ISearchResult> = ({
     </div>
     <div className={styles.genre}>
         {genres.map(({ name }, index) => (
-          <span>{name}{`${isLastGenre(index) ? '' : ', '}`}</span>
+          <span key={uuidv4()}>{name}{`${isLastGenre(index) ? '' : ', '}`}</span>
         ))}
       </div>
       </div>
