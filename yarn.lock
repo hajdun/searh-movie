@@ -540,7 +540,7 @@
     "language-tags" "^1.0.5"
     "minimatch" "^3.0.4"
 
-"eslint-plugin-n@^15.0.0":
+"eslint-plugin-n@^15.0.0", "eslint-plugin-n@^15.2.0":
   "integrity" "sha512-lWLg++jGwC88GDGGBX3CMkk0GIWq0y41aH51lavWApOKcMQcYoL3Ayd0lEdtD3SnQtR+3qBvWQS3qGbR2BxRWg=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-n/-/eslint-plugin-n-15.2.0.tgz"
   "version" "15.2.0"
