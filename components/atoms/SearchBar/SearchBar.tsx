@@ -1,53 +1,19 @@
 import React from 'react'
-import { useQuery, gql } from '@apollo/client'
-import { SearchResult } from '../SearchResult'
-import { v4 as uuidv4 } from 'uuid'
+import styles from './SearchBar.module.css'
 
-interface ISearchBar {}
-
-type IGenre = {
-  name: string;
-};
-
-interface IMovie {
-  name: string;
-  score: string;
-  genres: IGenre[];
+interface ISearchBar {
+  onChange:(event: React.ChangeEvent<HTMLInputElement>)=>void
 }
 
-interface ImovieList {
-  searchMovies: IMovie[];
-}
-
-const createQuery = (term:string) => gql`
-query SearchMovies {
-  searchMovies(query: "${term}") {
-    id
-    name
-    overview
-    releaseDate
-    score
-    genres {
-      name
-    }
-  }
-}
-`
-
-const SearchBar: React.FC<ISearchBar> = () => {
-  const { data, loading, error } = useQuery<ImovieList>(createQuery('Titanic'))
-
-  if (loading) return <div>Loading...</div>
-  if (error) return <pre>{error.message}</pre>
-
-  return (
-    <div>
+const SearchBar: React.FC<ISearchBar> = ({ onChange }) => {
+  return (<>
+    <div className={styles.container}>
+      <div className={styles.inputContainer}>
       SEARCH
-      <input type="text" />
-        {data && data.searchMovies && data.searchMovies.map(({ name: movieTitle, genres, score }) => {
-          return <SearchResult key={uuidv4()} movieTitle={movieTitle} score={score} genres={genres}/>
-        })}
+      <input className={styles.input} type="text" name="search" id="search" onChange={onChange} />
+      </div>
     </div>
+    </>
   )
 }
 

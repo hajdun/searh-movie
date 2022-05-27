@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import styles from './BasePage.module.css'
 
 interface IBasePage {
   children: React.ReactNode;
@@ -7,12 +8,12 @@ interface IBasePage {
 
 const BasePage: React.FC<IBasePage> = ({ children }) => {
   return (
-    <div>
+    <div >
       <Head>
         <title>Search movies</title>
         <meta name="description" content="Search movies" />
       </Head>
-      <main>{children}</main>
+      <main className={styles.content}>{children}</main>
     </div>
   )
 }

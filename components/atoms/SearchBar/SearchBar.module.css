@@ -1,0 +1,13 @@
+.container {
+    width: 400px;
+    height: 100px;
+}
+
+.inputContainer {
+    width: 100%;
+}
+
+.input {
+    height: 60px;
+    width: 100%;
+}

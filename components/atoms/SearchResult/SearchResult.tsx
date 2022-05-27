@@ -15,7 +15,7 @@ interface ISearchResult {
 const SearchResult: React.FC<ISearchResult> = ({
   movieTitle,
   score,
-  genres
+  genres = []
 }) => {
   const isLastGenre = (index: number) => {
     return index === genres.length - 1

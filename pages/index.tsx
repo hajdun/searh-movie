@@ -1,13 +1,10 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import { SearchBar } from '../components/atoms/SearchBar'
-import { BasePage } from '../components/templates/BasePage'
+import { IndexPage } from '../components/pages/IndexPage'
 
 const Home: NextPage = () => {
   return (
-    <BasePage>
-      <SearchBar />
-    </BasePage>
+      <IndexPage />
   )
 }
 
