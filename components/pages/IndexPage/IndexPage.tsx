@@ -24,11 +24,11 @@ const IndexPage: React.FC = () => {
   }
 
   const onMovieClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    // TODO: show wiki
     const element = event.target as HTMLDivElement
     const value = element.getAttribute('data-title')
-    console.log(value)
-    if (value) { console.log(wikiSearchMovie(value)) }
+    if (!value) return
+    console.log(wikiSearchMovie(value))
+    // TODO: show wiki (query+display iframe)
   }
 
   return (
