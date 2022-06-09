@@ -6,6 +6,7 @@ import styles from './SearchResultList.module.css'
 
 interface ISearchResultList {
   query: string
+  onMovieClick(event: React.MouseEvent<HTMLDivElement>): void
 }
 
 type IGenre = {
@@ -37,7 +38,7 @@ query SearchMovies {
 }
 `
 
-const SearchResultList: React.FC<ISearchResultList> = ({ query }) => {
+const SearchResultList: React.FC<ISearchResultList> = ({ query, onMovieClick }) => {
   if (!query) return <div>Please submit a query to continue</div>
 
   const { data, loading, error } = useQuery<ImovieList>(createQuery(query))
@@ -55,6 +56,7 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query }) => {
               movieTitle={movieTitle}
               score={score}
               genres={genres}
+              onMovieClick={onMovieClick}
             />
           )
         })}

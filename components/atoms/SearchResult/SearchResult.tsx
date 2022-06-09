@@ -10,12 +10,14 @@ interface ISearchResult {
   movieTitle: string;
   score: string;
   genres: IGenre[];
+  onMovieClick(event: React.MouseEvent<HTMLDivElement>):void
 }
 
 const SearchResult: React.FC<ISearchResult> = ({
   movieTitle,
   score,
-  genres = []
+  genres = [],
+  onMovieClick
 }) => {
   const isLastGenre = (index: number) => {
     return index === genres.length - 1
@@ -23,7 +25,7 @@ const SearchResult: React.FC<ISearchResult> = ({
 
   return (<div className={styles.searchResultContainer}>
     <div className={styles.searchResultHighlight}>
-      <div className={styles.name}>{movieTitle}</div>
+      <div className={styles.name} onClick={onMovieClick} data-title={movieTitle}>{movieTitle}</div>
       <div className={styles.score}>{score}</div>
     </div>
     <div className={styles.genre}>
