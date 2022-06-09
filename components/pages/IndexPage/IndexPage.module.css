@@ -1,4 +1,17 @@
 .container {
     display: flex;
-    flex-direction: row;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1001px) {
+    .container {
+        flex-direction: row;
+
+    }
 }
