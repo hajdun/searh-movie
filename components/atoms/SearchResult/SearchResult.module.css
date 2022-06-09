@@ -2,7 +2,8 @@
     border: 2px solid black;
     margin-bottom: 30px;
     width: 400px;
-    height: 100px;
+    min-height: 80px;
+    max-height: 200px;
     padding: 10px;
 }
 
@@ -13,9 +14,10 @@
 .searchResultHighlight {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .name {
@@ -25,9 +27,9 @@
 
 .score {
     width: 20px;
-    margin-right: 20px;
 }
 
 .genre {
-    width: 200px;
+    width: 300px;
+    font-size: 12px;
 }
