@@ -45,7 +45,7 @@ const IndexPage: React.FC = () => {
   return (
     <BasePage>
       <>
-        <div>
+        <div className={styles.searchBar}>
           <SearchBar onSubmit={onSubmit} onChange={onChange}/>
         </div>
       <div className={styles.container}>

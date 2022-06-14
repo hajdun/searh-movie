@@ -8,7 +8,8 @@
 .button {
     width: 100%;
     height: 40px;
-    background-color: aquamarine;
+    color: azure;
+    background-color:rgb(84, 84, 201);
     padding-left: 10px;
     padding-right: 10px;
     font-size: 18px;
@@ -17,6 +18,6 @@
     border-radius: 3px;
 
     &:hover {
-        background-color: rgb(78, 211, 167);
+        background-color: rgb(52, 52, 203);
     }
 }
