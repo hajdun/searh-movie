@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '../../atoms/Button'
 import { SearchInput } from '../../atoms/SearchInput'
 import styles from './SearchBar.module.scss'
 
