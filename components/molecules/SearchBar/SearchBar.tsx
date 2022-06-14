@@ -4,19 +4,16 @@ import { SearchInput } from '../../atoms/SearchInput'
 import styles from './SearchBar.module.scss'
 
 interface ISearchBar {
-  onSubmit: (event: React.SyntheticEvent) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  query: string
 }
 
-const SearchBar: React.FC<ISearchBar> = ({ onSubmit, onChange }) => {
+const SearchBar: React.FC<ISearchBar> = ({ onChange, query }) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div className={styles.container}>
         <div className={styles.searchInput}>
-          <SearchInput onChange={onChange} />
-        </div>
-        <div className={styles.button}>
-          <Button type="submit" text="Submit" />
+          <SearchInput onChange={onChange} query={query}/>
         </div>
       </div>
     </form>

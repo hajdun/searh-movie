@@ -1,29 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BasePage } from '../../templates/BasePage'
 import styles from './IndexPage.module.css'
 import { SearchResultList } from '../../organisms/SearchResultList'
 import { getMovieInfoFromWiki } from '../../../api/api'
 import { WikiList } from '../../organisms/WikiList'
 import { SearchBar } from '../../molecules/SearchBar'
+import { useRouter } from 'next/router'
 
 const IndexPage: React.FC = () => {
+  const router = useRouter()
+
   const [queryString, setQueryString] = useState('')
-  const [value, setValue] = useState('')
   const [wikiArticleUrls, setWikiArticleUrls] = useState<string[]>([])
   const [wikiSearchString, setWikiSearchString] = useState('')
+
+  useEffect(() => {
+    // TODO throttle change
+    const { search } = router.query
+    if (!search || typeof search !== 'string') return
+    setQueryString(search)
+  }, [router.query])
 
   const resetWikiValues = () => {
     setWikiArticleUrls([])
     setWikiSearchString('')
   }
 
-  const onSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault()
-    setQueryString(value)
-  }
-
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    const value = event.target.value
+    setQueryString(value)
+    router.push({
+      pathname: '/',
+      query: { search: value }
+    })
   }
 
   const onMovieClick = async (event: React.MouseEvent<HTMLDivElement>) => {
@@ -46,16 +55,19 @@ const IndexPage: React.FC = () => {
     <BasePage>
       <>
         <div className={styles.searchBar}>
-          <SearchBar onSubmit={onSubmit} onChange={onChange}/>
+          <SearchBar onChange={onChange} query={queryString} />
         </div>
-      <div className={styles.container}>
-        <div className={styles.results}>
-        <SearchResultList query={queryString} onMovieClick={onMovieClick}/>
-      </div>
-      <div className={styles.results}>
-      <WikiList wikiSearchString={wikiSearchString} wikiArticleUrls={wikiArticleUrls}></WikiList>
-      </div>
-      </div>
+        <div className={styles.container}>
+          <div className={styles.results}>
+            <SearchResultList query={queryString} onMovieClick={onMovieClick} />
+          </div>
+          <div className={styles.results}>
+            <WikiList
+              wikiSearchString={wikiSearchString}
+              wikiArticleUrls={wikiArticleUrls}
+            ></WikiList>
+          </div>
+        </div>
       </>
     </BasePage>
   )

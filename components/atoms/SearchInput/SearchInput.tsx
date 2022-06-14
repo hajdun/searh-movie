@@ -3,9 +3,10 @@ import styles from './SearchInput.module.scss'
 
 interface ISearchInput {
   onChange:(event: React.ChangeEvent<HTMLInputElement>)=>void
+  query: string
 }
 
-const SearchInput: React.FC<ISearchInput> = ({ onChange }) => {
+const SearchInput: React.FC<ISearchInput> = ({ onChange, query }) => {
   return (
     <div className={styles.container}>
       <div>
@@ -18,7 +19,8 @@ const SearchInput: React.FC<ISearchInput> = ({ onChange }) => {
           id="searchMoviesInput"
           name="searchMoviesInput"
           type="text"
-          onChange={onChange} />
+          onChange={onChange}
+          defaultValue={query} />
           </div>
         </div>
     </div>
