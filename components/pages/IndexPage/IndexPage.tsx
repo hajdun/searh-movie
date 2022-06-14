@@ -10,12 +10,12 @@ import { useRouter } from 'next/router'
 const IndexPage: React.FC = () => {
   const router = useRouter()
 
+  const [inputValue, setInputValue] = useState('')
   const [queryString, setQueryString] = useState('')
   const [wikiArticleUrls, setWikiArticleUrls] = useState<string[]>([])
   const [wikiSearchString, setWikiSearchString] = useState('')
 
   useEffect(() => {
-    // TODO throttle change
     const { search } = router.query
     if (!search || typeof search !== 'string') return
     setQueryString(search)
@@ -28,10 +28,15 @@ const IndexPage: React.FC = () => {
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
-    setQueryString(value)
+    setInputValue(value)
+  }
+
+  const onSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault()
+    setQueryString(inputValue)
     router.push({
       pathname: '/',
-      query: { search: value }
+      query: { search: inputValue }
     })
   }
 
@@ -55,7 +60,7 @@ const IndexPage: React.FC = () => {
     <BasePage>
       <>
         <div className={styles.searchBar}>
-          <SearchBar onChange={onChange} query={queryString} />
+          <SearchBar onChange={onChange} onSubmit={onSubmit} query={queryString} />
         </div>
         <div className={styles.container}>
           <div className={styles.results}>
