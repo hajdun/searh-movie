@@ -8,10 +8,9 @@ interface IWikiPage {
 const WikiPage: React.FC<IWikiPage> = ({
   url
 }) => {
-  return <div
-  className={styles.container}
-  dangerouslySetInnerHTML={{ __html: `<iframe src='${url}' width="800" height="700" />` }}
-  />
+  return <div className={styles.container}>
+    <a href={url} target="_blank" rel="noreferrer">{url}</a>
+    </div>
 }
 
 export default WikiPage

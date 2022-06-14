@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { SearchBar } from '../../atoms/SearchBar'
+import { SearchInput } from '../../atoms/SearchInput'
 import { BasePage } from '../../templates/BasePage'
 import styles from './IndexPage.module.css'
 import { SearchResultList } from '../../organisms/SearchResultList'
 import { getMovieInfoFromWiki } from '../../../api/api'
 import { WikiList } from '../../organisms/WikiList'
+import { Button } from '../../atoms/Button'
+import { SearchBar } from '../../molecules/SearchBar'
 
 const IndexPage: React.FC = () => {
   const [queryString, setQueryString] = useState('')
@@ -30,18 +32,19 @@ const IndexPage: React.FC = () => {
 
   return (
     <BasePage>
-      <div className={styles.container}>
+      <>
         <div>
-        <form onSubmit={onSubmit}>
-          <SearchBar onChange={onChange}/>
-          <button type="submit" >Submit</button>
-        </form>
+          <SearchBar onSubmit={onSubmit} onChange={onChange}/>
+        </div>
+      <div className={styles.container}>
+        <div className={styles.results}>
         <SearchResultList query={queryString} onMovieClick={onMovieClick}/>
       </div>
-      <div>
+      <div className={styles.results}>
       <WikiList wikiArticleUrls={wikiArticleUrls}></WikiList>
       </div>
       </div>
+      </>
     </BasePage>
   )
 }

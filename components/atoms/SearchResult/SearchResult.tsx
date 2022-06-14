@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './SearchResult.module.css'
+import styles from './SearchResult.module.scss'
 import { v4 as uuidv4 } from 'uuid'
 
 type IGenre = {

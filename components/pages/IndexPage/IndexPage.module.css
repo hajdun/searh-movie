@@ -12,6 +12,9 @@
 @media screen and (min-width: 1001px) {
     .container {
         flex-direction: row;
-
     }
+}
+
+.results {
+    margin-top: 20px;
 }
