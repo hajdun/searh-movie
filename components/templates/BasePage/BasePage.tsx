@@ -8,7 +8,7 @@ interface IBasePage {
 
 const BasePage: React.FC<IBasePage> = ({ children }) => {
   return (
-    <div >
+    <div className={styles.page} >
       <Head>
         <title>Search movies</title>
         <meta name="description" content="Search movies" />
