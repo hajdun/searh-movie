@@ -6,25 +6,27 @@ import { getMovieInfoFromWiki } from '../../../api/api'
 import { WikiList } from '../../organisms/WikiList'
 import { SearchBar } from '../../molecules/SearchBar'
 import { useRouter } from 'next/router'
+import { WikiApiResult } from '../../../types/WikiResult'
 
 const IndexPage: React.FC = () => {
   const router = useRouter()
 
   const [inputValue, setInputValue] = useState('')
   const [queryString, setQueryString] = useState('')
-  const [wikiArticleUrls, setWikiArticleUrls] = useState<string[]>([])
+  const [wikiArticles, setWikiArticles] = useState<WikiApiResult>({})
   const [wikiSearchString, setWikiSearchString] = useState('')
 
+  const resetWikiValues = () => {
+    setWikiArticles({})
+    setWikiSearchString('')
+  }
+
   useEffect(() => {
+    resetWikiValues()
     const { search } = router.query
     if (!search || typeof search !== 'string') return
     setQueryString(search)
   }, [router.query])
-
-  const resetWikiValues = () => {
-    setWikiArticleUrls([])
-    setWikiSearchString('')
-  }
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -47,12 +49,12 @@ const IndexPage: React.FC = () => {
       resetWikiValues()
       return
     }
-    const moviesArray: string[] = await getMovieInfoFromWiki(value)
-    if (!moviesArray || moviesArray.length === 0) {
+    const moviesObject: WikiApiResult = await getMovieInfoFromWiki(value)
+    if (!moviesObject) {
       resetWikiValues()
       return
     }
-    setWikiArticleUrls(moviesArray)
+    setWikiArticles(moviesObject)
     setWikiSearchString(value)
   }
 
@@ -69,7 +71,7 @@ const IndexPage: React.FC = () => {
           <div className={styles.results}>
             <WikiList
               wikiSearchString={wikiSearchString}
-              wikiArticleUrls={wikiArticleUrls}
+              wikiArticles={wikiArticles}
             ></WikiList>
           </div>
         </div>

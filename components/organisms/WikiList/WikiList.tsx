@@ -1,18 +1,20 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { WikiApiResult } from '../../../types/WikiResult'
 import { WikiPage } from '../../atoms/WikiPage'
 import styles from './WikiList.module.scss'
 
 interface IWikiList {
-  wikiArticleUrls: string[];
+  wikiArticles:WikiApiResult;
   wikiSearchString: string;
 }
 
 const WikiList: React.FC<IWikiList> = ({
-  wikiArticleUrls,
+  wikiArticles,
   wikiSearchString
 }) => {
-  if (!wikiArticleUrls || wikiArticleUrls.length === 0) return <div />
+  if (!wikiArticles || !wikiSearchString) return <div />
+
+  const pageIdsArray = Object.keys(wikiArticles)
 
   return (
     <div className={styles.container}>
@@ -20,11 +22,11 @@ const WikiList: React.FC<IWikiList> = ({
         Wikipedia results for {' '}
         <span className={styles.query}>{wikiSearchString}</span>
       </div>
-      <div>
-        {wikiArticleUrls.map((url: string) => {
-          return <WikiPage key={uuidv4()} url={url} />
+     {pageIdsArray.length > 0 && <div>
+        {pageIdsArray.map((wikiPageId: string) => {
+          return <WikiPage key={wikiPageId} pageId={wikiPageId} details={wikiArticles[wikiPageId]}/>
         })}
-      </div>
+      </div>}
     </div>
   )
 }
