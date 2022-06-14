@@ -20,7 +20,8 @@ const SearchInput: React.FC<ISearchInput> = ({ onChange, query }) => {
           name="searchMoviesInput"
           type="text"
           onChange={onChange}
-          defaultValue={query} />
+          defaultValue={query}
+          placeholder="movie title" />
           </div>
         </div>
     </div>

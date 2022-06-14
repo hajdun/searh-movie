@@ -11,14 +11,12 @@ interface ISearchResultList {
   onMovieClick(event: React.MouseEvent<HTMLDivElement>): void
 }
 
-const SearchResultList: React.FC<ISearchResultList> = ({ query, onMovieClick }) => {
-  if (!query) return <div>Please submit a query to continue</div>
-
-  const { data, loading, error } = useQuery<IMovieList>(createQuery(query))
+const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClick }) => {
+  const { data, loading, error } = useQuery<IMovieList>(createQuery(query), { errorPolicy: 'ignore' })
 
   if (loading) return <div>Loading...</div>
   if (error) return <pre>{error.message}</pre>
-  if (!data) return <div>There are no results.</div>
+  if (!data) return <div>Please type a movie title and hit the Submit button.</div>
 
   return (
     <div className={styles.container}>
