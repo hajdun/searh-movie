@@ -5,17 +5,23 @@ import styles from './WikiList.module.scss'
 
 interface IWikiList {
   wikiArticleUrls: string[]
+  wikiSearchString: string
 }
 
-const WikiList: React.FC<IWikiList> = ({ wikiArticleUrls }) => {
-  return (
-    <div className={styles.container}>
-      {wikiArticleUrls &&
-        wikiArticleUrls.map((url:string) => {
+const WikiList: React.FC<IWikiList> = ({ wikiArticleUrls, wikiSearchString }) => {
+  if (!wikiArticleUrls || wikiArticleUrls.length === 0) return <div/>
+
+  return (<div className={styles.container}>
+      <div className={styles.heading}>
+        Wikipedia results for {wikiSearchString}
+      </div>
+      <div>
+        {wikiArticleUrls.map((url:string) => {
           return (
               <WikiPage key={uuidv4()} url={url}/>
           )
         })}
+        </div>
     </div>
   )
 }

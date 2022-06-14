@@ -9,7 +9,7 @@ const WikiPage: React.FC<IWikiPage> = ({
   url
 }) => {
   return <div className={styles.container}>
-    <a href={url} target="_blank" rel="noreferrer">{url}</a>
+    <a className={styles.link} href={url} target="_blank" rel="noreferrer">{url}</a>
     </div>
 }
 

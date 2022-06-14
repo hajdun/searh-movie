@@ -44,11 +44,15 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query, onMovieClick }) 
   const { data, loading, error } = useQuery<ImovieList>(createQuery(query))
   if (loading) return <div>Loading...</div>
   if (error) return <pre>{error.message}</pre>
+  if (!data || data.length === 0) return <div>There are no results.</div>
 
   return (
     <div className={styles.container}>
-      {data &&
-        data.searchMovies &&
+      <div className={styles.heading}>
+        Movie search results
+      </div>
+      <div>
+        {data.searchMovies &&
         data.searchMovies.map(({ name: movieTitle, genres, score }) => {
           return (
             <SearchResult
@@ -60,6 +64,7 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query, onMovieClick }) 
             />
           )
         })}
+        </div>
     </div>
   )
 }
