@@ -4,15 +4,17 @@
     align-items: center;
 }
 
+@import '../../../styles/variables.scss';
+
 .label {
-    font-size: 20px;
+    font-size: $inputFontSize;
     margin-right: 20px;
 }
 
 .input {
-    height: 40px;
+    height: $inputHeight;
     width: 300px;
-    font-size: 18px;
+    font-size: $inputFontSize;
     padding-left: 10px;
     border: none;
     border-radius: 3px;

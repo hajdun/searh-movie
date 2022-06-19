@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { v4 as uuidv4 } from 'uuid'
 
-import styles from './SearchResultList.module.css'
+import styles from './SearchResultList.module.scss'
 import { SearchResult } from '../../atoms/SearchResult'
 import { IMovieList } from '../../../types/Movie'
 import { createQuery } from '../../../api'

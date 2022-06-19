@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { BasePage } from '../../templates/BasePage'
-import styles from './IndexPage.module.css'
+import styles from './IndexPage.module.scss'
 import { SearchResultList } from '../../organisms/SearchResultList'
 import { getMovieInfoFromWiki } from '../../../api'
 import { WikiList } from '../../organisms/WikiList'

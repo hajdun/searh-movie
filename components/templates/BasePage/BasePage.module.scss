@@ -1,5 +1,7 @@
+@import '../../../styles/variables.scss';
+
 .page {
-   background-color: rgb(233, 233, 232);
+   background-color: $pageBackgroundColor;
 }
 
 .content {

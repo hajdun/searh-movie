@@ -2,9 +2,10 @@ import React from 'react'
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
+import { APOLLO_URI } from '../api'
 
 const client = new ApolloClient({
-  uri: 'https://tmdb.sandbox.zoosh.ie/dev/grphql',
+  uri: APOLLO_URI,
   cache: new InMemoryCache()
 })
 

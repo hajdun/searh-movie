@@ -1,9 +1,11 @@
+@import '../../../styles/variables.scss';
+
 .searchBar {
     margin-bottom: 50px;
     position: fixed;
     width: 100%;
     height: 100px;
-    background-color: rgb(174, 196, 188);
+    background-color: $searchBarBackgroundColor;
 }
 
 .results {

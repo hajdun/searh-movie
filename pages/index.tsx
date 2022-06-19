@@ -3,9 +3,7 @@ import type { NextPage } from 'next'
 import { IndexPage } from '../components/pages/IndexPage'
 
 const Home: NextPage = () => {
-  return (
-      <IndexPage />
-  )
+  return (<IndexPage />)
 }
 
 export default Home

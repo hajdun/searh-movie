@@ -2,6 +2,7 @@ import axios from 'axios'
 import { gql } from '@apollo/client'
 import { WikiApiResult } from '../types/WikiResult'
 
+export const APOLLO_URI = 'https://tmdb.sandbox.zoosh.ie/dev/grphql'
 const WIKI_BASE_URL = 'https://en.wikipedia.org'
 const WIKI_API_URL = `${WIKI_BASE_URL}/w/api.php`
 

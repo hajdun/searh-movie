@@ -1,5 +1,7 @@
+@import '../../../styles/variables.scss';
+
 .searchResultContainer {
-    background-color: white;
+    background-color: $searchResultBackgroundColor;
     margin-bottom: 30px;
     min-width:400px;
     max-width: 600px;
@@ -9,20 +11,20 @@
 }
 
 .searchResultContainer:hover {
-    background-color: aliceblue;
+    background-color: $searchResultHoverBackgroundColor;
 }
 
 .searchResultHighlight {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: $searchResultFontSize;
     font-weight: 500;
     margin-bottom: 20px;
 }
 
 .heading {
-    font-size: 18px;
+    font-size: $searchResultHeadingFontSize;
     margin-bottom: 20px;
 }
 
@@ -38,7 +40,7 @@
 
 .genre {
     width: 300px;
-    font-size: 12px;
+    font-size: $searchResultGenreFontSize;
 }
 
  .overview {

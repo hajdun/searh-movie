@@ -1,7 +1,7 @@
 import React from 'react'
 import { SearchResult } from '../../atoms/SearchResult'
 import { v4 as uuidv4 } from 'uuid'
-import styles from './RecommendedResultList.module.css'
+import styles from './RecommendedResultList.module.scss'
 import { useQuery } from '@apollo/client'
 import { getMovie } from '../../../api/api'
 import { IMovie } from '../../../types/Movie'

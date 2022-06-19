@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import styles from './BasePage.module.css'
+import styles from './BasePage.module.scss'
 
 interface IBasePage {
   children: React.ReactNode;

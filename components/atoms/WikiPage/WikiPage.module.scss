@@ -1,6 +1,8 @@
+@import '../../../styles/variables.scss';
+
 .container {
    width: 400px;
    margin-bottom: 40px;
-   background-color: white;
+   background-color: $wikiResultBackgroundColor;
    padding: 15px;
 }

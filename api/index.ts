@@ -1,1 +1,7 @@
-export { getWikiPageForPageId, getMovieInfoFromWiki, createQuery, getMovie } from './api'
+export {
+  getWikiPageForPageId,
+  getMovieInfoFromWiki,
+  createQuery,
+  getMovie,
+  APOLLO_URI
+} from './api'
