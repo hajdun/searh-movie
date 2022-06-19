@@ -21,10 +21,12 @@
 }
 
 @media screen and (max-width: 600px) {
+    .label {
+        margin-right: 0;
+    }
+
     .container {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 
     .input {

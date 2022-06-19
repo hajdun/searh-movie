@@ -4,3 +4,9 @@
     font-size: $searchResultHeadingFontSize;
     margin-bottom: 20px;
 }
+
+@media screen and (max-width: 600px) {
+    .heading {
+        margin-left: $searchResultPadding;
+    }
+}

@@ -13,13 +13,16 @@
 }
 
 .button {
-    width: 250px;
+    width: 300px;
 }
 
 @media screen and (max-width: 600px) {
     .container {
         flex-direction: column;
         width: 100%;
+    }
+    .searchInput {
+        margin-right: 0px;
     }
 }
 

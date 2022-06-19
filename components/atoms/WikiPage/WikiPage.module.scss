@@ -4,5 +4,11 @@
    width: 400px;
    margin-bottom: 40px;
    background-color: $wikiResultBackgroundColor;
-   padding: 15px;
+   padding: $searchResultPadding;
+}
+
+@media screen and (min-width: 601px) {
+   .container {
+      width: 100%;
+   }
 }
