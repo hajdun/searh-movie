@@ -26,7 +26,7 @@ const Button: React.FC<IButton> = ({
 
   return (
     <div className={styles.container}>
-      <button className={styles.button} type={type}>
+      <button className={styles.button} type={type} data-testid={id}>
         {text}
       </button>
     </div>
