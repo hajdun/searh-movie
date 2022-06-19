@@ -18,12 +18,13 @@
 
 @media screen and (max-width: 600px) {
     .searchBar {
-        height: 300px;
+        height: 200px;
     }
 
     .container {
         flex-direction: column;
         width: 100%;
+        margin-top: 200px;
     }
 }
 
