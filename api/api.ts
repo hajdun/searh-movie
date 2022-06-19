@@ -6,12 +6,12 @@ const WIKI_BASE_URL = 'https://en.wikipedia.org'
 const WIKI_API_URL = `${WIKI_BASE_URL}/w/api.php`
 
 export const getWikiPageForPageId = (pageId: string) => {
-  if (!pageId || pageId !== '-1') return ''
+  if (!pageId || pageId === '-1') return ''
   return `${WIKI_BASE_URL}/?curid=${pageId}`
 }
 
-const wikiSearchMovie = (movieTitle: string, extraQuery = '') => {
-  const queryString = encodeURI(movieTitle + extraQuery)
+const wikiSearchMovie = (queryStringParam: string) => {
+  const queryString = encodeURI(queryStringParam)
   return `${WIKI_API_URL}?format=json&action=query&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${queryString}`
 }
 
@@ -19,7 +19,6 @@ const getWikiMovieObject = (url: string) => {
   return axios.get(url, { withCredentials: false }).then((result) => {
     if (!result.data.query.pages) return null
     const firstResultPages = result.data.query.pages
-
     return firstResultPages // is is an object of wiki articles
   }).catch((e: Error) => {
     console.error(e)
@@ -30,7 +29,8 @@ export const getMovieInfoFromWiki = async (movieTitle: string):Promise<WikiApiRe
   const extraQueryStrings = ['+film', '+movie', '']
   let result = {}
   for (let i = 0; i < extraQueryStrings.length; i++) {
-    const urlWithQueries = wikiSearchMovie(movieTitle, extraQueryStrings[i])
+    const queryString = movieTitle + extraQueryStrings[i]
+    const urlWithQueries = wikiSearchMovie(queryString)
     const fetchResult = await getWikiMovieObject(urlWithQueries)
     result = { ...result, ...fetchResult }
   }

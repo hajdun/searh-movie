@@ -1,7 +1,8 @@
 .searchResultContainer {
     background-color: white;
     margin-bottom: 30px;
-    width: 400px;
+    min-width:400px;
+    max-width: 600px;
     min-height: 80px;
     max-height: 1000px;
     padding: 10px;
