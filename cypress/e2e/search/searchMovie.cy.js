@@ -48,7 +48,7 @@ context('Search', () => {
         .should('be.visible')
     })
 
-    it('.should() - show recommendations for movies', () => {
+    it('.should() - show recommendations for movies (e.g. Abattoir for Titanic 666)', () => {
       cy.get('#searchMoviesInput')
         .type('titanic')
 
@@ -58,8 +58,12 @@ context('Search', () => {
       cy.get('[data-title="Titanic 666"]')
         .click()
 
-      cy.get('data-testid="recommended"')
+      cy.get('[data-testid="recommended"]')
+        .first()
         .click()
+
+      cy.get('[data-title="Abattoir"]')
+        .should('be.visible')
     })
   })
 })
