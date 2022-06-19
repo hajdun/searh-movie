@@ -52,24 +52,23 @@ query SearchMovies {
   }
 }
 `
-// TODO: use for
-// Bonus: Dual state search engine; a “related” button next to the two links in the movie: this switches the movie list from search results to a list of related movies related to the selected movie
-export const createRecommendationQuery = (movieTitle:string) => gql`query SearchMovies {
-  searchMovies(query: "${movieTitle}") {
+export const getMovie = (id:string) => gql`
+query getMovie {
+  movie(id: ${parseInt(id)}) {
     id
     name
     overview
     releaseDate
-    recommended {
+    score
+    genres {
       name
     }
-  }
-}`
-
-export const getMovie = (id:number) => gql`query getMovie {
-  movie(id: ${id}) {
-    id
-    name
-    overview
+    recommended {
+      id
+      name
+      overview
+      releaseDate
+      score
+    }
   }
 }`

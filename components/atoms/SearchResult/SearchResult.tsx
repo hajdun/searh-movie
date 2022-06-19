@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from './SearchResult.module.scss'
 import { v4 as uuidv4 } from 'uuid'
+import Link from 'next/link'
 
 type IGenre = {
   name: string;
 };
 
 interface ISearchResult {
+  id: number
   movieTitle: string;
   score: string;
   genres: IGenre[];
@@ -14,6 +16,7 @@ interface ISearchResult {
 }
 
 const SearchResult: React.FC<ISearchResult> = ({
+  id,
   movieTitle,
   score,
   genres = [],
@@ -32,6 +35,13 @@ const SearchResult: React.FC<ISearchResult> = ({
         {genres.map(({ name }, index) => (
           <span key={uuidv4()}>{name}{`${isLastGenre(index) ? '' : ', '}`}</span>
         ))}
+      </div>
+      <div className={styles.genre}>
+        <Link href={`/recommended?movieId=${id}`}>
+          <a className={styles.link}>
+            Recommended similar movies
+          </a>
+        </Link>
       </div>
       </div>
   )
