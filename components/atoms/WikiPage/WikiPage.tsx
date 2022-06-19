@@ -17,7 +17,7 @@ const WikiPage: React.FC<IWikiPage> = ({ pageId, details }) => {
   return (
     <div className={styles.container}>
       <div>
-        <a href={href} target="_blank" rel="noreferrer">
+        <a href={href} target="_blank" rel="noreferrer" data-testid={title}>
           {title}
         </a>
       </div>

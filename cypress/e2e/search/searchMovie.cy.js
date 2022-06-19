@@ -26,11 +26,25 @@ context('Search', () => {
       cy.get('#searchMoviesInput')
         .type('titanic')
 
-      cy.get('#searchMoviesButton')
+      cy.get('[data-testid="searchMoviesButton"]')
         .click()
 
       cy.get('[data-testid="searchResult"]')
         .first()
+        .should('be.visible')
+    })
+
+    it('.should() - perform wiki search on title click (show wiki result)', () => {
+      cy.get('#searchMoviesInput')
+        .type('titanic')
+
+      cy.get('[data-testid="searchMoviesButton"]')
+        .click()
+
+      cy.get('[data-title="Titanic 666"]')
+        .click()
+
+      cy.get('[data-testid="Titanic 666"]')
         .should('be.visible')
     })
   })
