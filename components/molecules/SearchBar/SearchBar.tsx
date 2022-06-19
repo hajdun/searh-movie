@@ -6,7 +6,7 @@ import styles from './SearchBar.module.scss'
 interface ISearchBar {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (event: React.SyntheticEvent) => void;
-  query: string
+  query: string;
 }
 
 const SearchBar: React.FC<ISearchBar> = ({ onChange, onSubmit, query }) => {
@@ -14,10 +14,10 @@ const SearchBar: React.FC<ISearchBar> = ({ onChange, onSubmit, query }) => {
     <form onSubmit={onSubmit}>
       <div className={styles.container}>
         <div className={styles.searchInput}>
-          <SearchInput onChange={onChange} query={query}/>
+          <SearchInput onChange={onChange} query={query} />
         </div>
         <div className={styles.button}>
-        <Button type="submit" text="Submit" id="searchMoviesButton" />
+          <Button type="submit" text="Submit" id="searchMoviesButton" />
         </div>
       </div>
     </form>
