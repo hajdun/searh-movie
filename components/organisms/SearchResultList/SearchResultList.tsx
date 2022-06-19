@@ -1,10 +1,11 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
-import { SearchResult } from '../../atoms/SearchResult'
 import { v4 as uuidv4 } from 'uuid'
+
 import styles from './SearchResultList.module.css'
+import { SearchResult } from '../../atoms/SearchResult'
 import { IMovieList } from '../../../types/Movie'
-import { createQuery } from '../../../api/api'
+import { createQuery } from '../../../api'
 
 interface ISearchResultList {
   query: string

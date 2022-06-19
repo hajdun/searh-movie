@@ -1,6 +1,6 @@
 import React from 'react'
-import { BasePage } from '../../templates/BasePage'
 import { useRouter } from 'next/router'
+import { BasePage } from '../../templates/BasePage'
 import { RecommendedResultList } from '../../organisms/RecommendedResultList'
 
 const Recommended: React.FC = () => {

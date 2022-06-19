@@ -1,41 +1,40 @@
 import axios from 'axios'
 import { gql } from '@apollo/client'
-import { Exception } from 'sass'
 import { WikiApiResult } from '../types/WikiResult'
 
+const WIKI_BASE_URL = 'https://en.wikipedia.org'
+const WIKI_API_URL = `${WIKI_BASE_URL}/w/api.php`
+
 export const getWikiPageForPageId = (pageId: string) => {
-  return pageId && pageId !== '-1' ? `https://en.wikipedia.org/?curid=${pageId}` : ''
+  if (!pageId || pageId !== '-1') return ''
+  return `${WIKI_BASE_URL}/?curid=${pageId}`
 }
-const WIKI_URL = 'https://en.wikipedia.org/w/api.php'
 
 const wikiSearchMovie = (movieTitle: string, extraQuery = '') => {
   const queryString = encodeURI(movieTitle + extraQuery)
-  return `${WIKI_URL}?format=json&action=query&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${queryString}`
+  return `${WIKI_API_URL}?format=json&action=query&origin=*&prop=extracts&exintro&explaintext&redirects=1&titles=${queryString}`
 }
 
-const getMovieObject = (url: string) => {
+const getWikiMovieObject = (url: string) => {
   return axios.get(url, { withCredentials: false }).then((result) => {
     if (!result.data.query.pages) return null
     const firstResultPages = result.data.query.pages
 
     return firstResultPages // is is an object of wiki articles
-  }).catch((e: Exception) => {
+  }).catch((e: Error) => {
     console.error(e)
   })
 }
 
 export const getMovieInfoFromWiki = async (movieTitle: string):Promise<WikiApiResult> => {
-  const url1 = wikiSearchMovie(movieTitle, '+film')
-  const url2 = wikiSearchMovie(movieTitle, '+movie')
-  const url3 = wikiSearchMovie(movieTitle)
-
-  const result1 = await getMovieObject(url1)
-  const result2 = await getMovieObject(url2)
-  const result3 = await getMovieObject(url3)
-
-  return {
-    ...result1, ...result2, ...result3
+  const extraQueryStrings = ['+film', '+movie', '']
+  let result = {}
+  for (let i = 0; i < extraQueryStrings.length; i++) {
+    const urlWithQueries = wikiSearchMovie(movieTitle, extraQueryStrings[i])
+    const fetchResult = await getWikiMovieObject(urlWithQueries)
+    result = { ...result, ...fetchResult }
   }
+  return result
 }
 
 export const createQuery = (term: string) => gql`
@@ -60,15 +59,15 @@ query getMovie {
     overview
     releaseDate
     score
-    genres {
-      name
-    }
     recommended {
       id
       name
       overview
       releaseDate
       score
+    }
+    genres {
+      name
     }
   }
 }`
