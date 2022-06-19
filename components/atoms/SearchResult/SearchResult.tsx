@@ -46,7 +46,7 @@ const SearchResult: React.FC<ISearchResult> = ({
 
       <div className={styles.genre}>
         <Link href={`/recommended?movieId=${id}`}>
-          <a className={styles.link}>
+          <a>
             Recommended similar movies
           </a>
         </Link>
