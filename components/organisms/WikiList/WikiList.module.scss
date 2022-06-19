@@ -7,3 +7,9 @@
 .query {
     font-weight: bold;
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        margin-left: 0;
+    }
+}

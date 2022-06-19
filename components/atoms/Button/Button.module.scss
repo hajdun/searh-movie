@@ -23,3 +23,9 @@
         background-color: $buttonHoverBackgroundColor;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 300px;
+    }
+}
