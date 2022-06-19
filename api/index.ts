@@ -2,6 +2,5 @@ export {
   getWikiPageForPageId,
   getMovieInfoFromWiki,
   createQuery,
-  getMovie,
-  APOLLO_URI
+  getMovie
 } from './api'
