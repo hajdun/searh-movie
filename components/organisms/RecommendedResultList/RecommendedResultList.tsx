@@ -26,7 +26,7 @@ const RecommendedResultList: React.FC<IRecommendedResultList> = ({ movieId }) =>
       </div>
       <div>
         {recommendedData &&
-      recommendedData.map(({ name: movieTitle, genres, score, id }) => {
+      recommendedData.map(({ name: movieTitle, genres, score, id, overview }) => {
         return (
             <SearchResult
               id={id}
@@ -34,6 +34,7 @@ const RecommendedResultList: React.FC<IRecommendedResultList> = ({ movieId }) =>
               movieTitle={movieTitle}
               score={score}
               genres={genres}
+              overview={overview}
               onMovieClick={() => {}}
             />
         )

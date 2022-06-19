@@ -3,7 +3,7 @@
     margin-bottom: 30px;
     width: 400px;
     min-height: 80px;
-    max-height: 200px;
+    max-height: 1000px;
     padding: 10px;
 }
 
@@ -43,4 +43,9 @@
 .link {
     color:rgb(84, 84, 201);
     text-decoration: underline;
+ }
+
+ .overview {
+    padding-top: 10px;
+    padding-bottom: 10px;
  }

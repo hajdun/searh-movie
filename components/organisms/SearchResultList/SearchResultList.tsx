@@ -25,7 +25,7 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClic
       </div>
       <div>
         {data.searchMovies &&
-        data.searchMovies.map(({ name: movieTitle, genres, score, id }) => {
+        data.searchMovies.map(({ name: movieTitle, genres, score, id, overview }) => {
           return (
             <SearchResult
               id={id}
@@ -33,6 +33,7 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClic
               movieTitle={movieTitle}
               score={score}
               genres={genres}
+              overview={overview}
               onMovieClick={onMovieClick}
             />
           )

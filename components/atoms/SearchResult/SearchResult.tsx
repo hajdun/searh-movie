@@ -12,6 +12,7 @@ interface ISearchResult {
   movieTitle: string;
   score: string;
   genres: IGenre[];
+  overview: string;
   onMovieClick(event: React.MouseEvent<HTMLDivElement>):void
 }
 
@@ -20,6 +21,7 @@ const SearchResult: React.FC<ISearchResult> = ({
   movieTitle,
   score,
   genres = [],
+  overview = '',
   onMovieClick
 }) => {
   const isLastGenre = (index: number) => {
@@ -31,11 +33,17 @@ const SearchResult: React.FC<ISearchResult> = ({
       <div className={styles.name} onClick={onMovieClick} data-title={movieTitle}>{movieTitle}</div>
       <div className={styles.score}>{score}</div>
     </div>
-    <div className={styles.genre}>
+
+      <div className={styles.overview}>
+        {overview}
+      </div>
+
+      <div className={styles.genre}>
         {genres.map(({ name }, index) => (
           <span key={uuidv4()}>{name}{`${isLastGenre(index) ? '' : ', '}`}</span>
         ))}
       </div>
+
       <div className={styles.genre}>
         <Link href={`/recommended?movieId=${id}`}>
           <a className={styles.link}>

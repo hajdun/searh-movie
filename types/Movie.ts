@@ -7,6 +7,7 @@ export interface IMovie {
   name: string;
   score: string;
   genres: IGenre[];
+  overview: string;
   recommended?: unknown[];
 }
 
