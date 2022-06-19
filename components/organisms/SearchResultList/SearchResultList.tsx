@@ -2,11 +2,11 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { v4 as uuidv4 } from 'uuid'
 
-import styles from './SearchResultList.module.scss'
 import { SearchResult } from '../../atoms/SearchResult'
 import { IMovieList } from '../../../types/Movie'
 import { createQuery } from '../../../api'
 import { Loading } from '../../atoms/Loading'
+import { Header } from '../../atoms/Header'
 
 interface ISearchResultList {
   query: string
@@ -21,10 +21,10 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClic
   if (!data) return <div>Please type a movie title and hit the Submit button.</div>
 
   return (
-    <div className={styles.container}>
-      <div className={styles.heading}>
+    <div>
+      <Header>
         Movie search results
-      </div>
+        </Header>
       <div>
         {data.searchMovies &&
         data.searchMovies.map(({ name: movieTitle, genres, score, id, overview }) => {
