@@ -2,7 +2,6 @@
 
 .container {
    display: flex;
-   flex-direction: row;
    align-items: center;
    align-content: center;
    justify-content: center;
@@ -16,3 +15,17 @@
 .button {
     width: 250px;
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .container {
+        flex-direction: row;
+    }
+}
+

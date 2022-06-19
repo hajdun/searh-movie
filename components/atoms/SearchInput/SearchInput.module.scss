@@ -1,10 +1,10 @@
+@import '../../../styles/variables.scss';
+
 .container {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
-@import '../../../styles/variables.scss';
 
 .label {
     font-size: $inputFontSize;
@@ -18,4 +18,17 @@
     padding-left: 10px;
     border: none;
     border-radius: 3px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input {
+       margin-top: 10px;
+       margin-bottom: 10px;
+    }
 }
