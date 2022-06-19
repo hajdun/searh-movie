@@ -17,7 +17,7 @@ const SearchBar: React.FC<ISearchBar> = ({ onChange, onSubmit, query }) => {
           <SearchInput onChange={onChange} query={query}/>
         </div>
         <div className={styles.button}>
-        <Button type="submit" text="Submit" />
+        <Button type="submit" text="Submit" id="searchMoviesButton" />
         </div>
       </div>
     </form>

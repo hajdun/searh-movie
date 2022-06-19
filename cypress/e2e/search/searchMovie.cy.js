@@ -20,9 +20,18 @@ context('Search', () => {
       cy.get('[data-testid="searchResult"]')
         .first()
         .should('be.visible')
+    })
 
-      // for more information about asserting element's text
-      // see https://on.cypress.io/using-cypress-faq#How-do-I-get-an-element’s-text-contents
+    it('.should() - perform search on submit button', () => {
+      cy.get('#searchMoviesInput')
+        .type('titanic')
+
+      cy.get('#searchMoviesButton')
+        .click()
+
+      cy.get('[data-testid="searchResult"]')
+        .first()
+        .should('be.visible')
     })
   })
 })
