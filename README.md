@@ -44,4 +44,10 @@ npm run cypress:open
 
 # Production
 
-(Search movies)[https://search-movie-rho.vercel.app/]
+[Search movies](https://search-movie-rho.vercel.app/)
+
+# Features
+
+* movie search by name
+* wiki search by movie title
+* recommendation list for movie
