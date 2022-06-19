@@ -28,7 +28,7 @@ const SearchResult: React.FC<ISearchResult> = ({
     return index === genres.length - 1
   }
 
-  return (<div className={styles.searchResultContainer}>
+  return (<div className={styles.searchResultContainer} data-testid="searchResult">
     <div className={styles.searchResultHighlight}>
       <div className={styles.name} onClick={onMovieClick} data-title={movieTitle}>{movieTitle}</div>
       <div className={styles.score}>{score}</div>
