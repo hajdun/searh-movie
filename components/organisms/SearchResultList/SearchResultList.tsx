@@ -6,6 +6,7 @@ import styles from './SearchResultList.module.scss'
 import { SearchResult } from '../../atoms/SearchResult'
 import { IMovieList } from '../../../types/Movie'
 import { createQuery } from '../../../api'
+import { Loading } from '../../atoms/Loading'
 
 interface ISearchResultList {
   query: string
@@ -15,7 +16,7 @@ interface ISearchResultList {
 const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClick }) => {
   const { data, loading, error } = useQuery<IMovieList>(createQuery(query), { errorPolicy: 'ignore' })
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <pre>{error.message}</pre>
   if (!data) return <div>Please type a movie title and hit the Submit button.</div>
 

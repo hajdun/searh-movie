@@ -5,6 +5,7 @@ import styles from './RecommendedResultList.module.scss'
 import { useQuery } from '@apollo/client'
 import { getMovie } from '../../../api/api'
 import { IMovie } from '../../../types/Movie'
+import { Loading } from '../../atoms/Loading'
 
 interface IRecommendedResultList {
   movieId: string
@@ -13,7 +14,7 @@ interface IRecommendedResultList {
 const RecommendedResultList: React.FC<IRecommendedResultList> = ({ movieId }) => {
   const { data, loading, error } = useQuery(getMovie(movieId?.toString()), { errorPolicy: 'ignore' })
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <pre>{error.message}</pre>
   if (!data) return <div>There are no recommendations for this movie id</div>
 
