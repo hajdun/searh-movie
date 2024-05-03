@@ -1,14 +1,6 @@
-type IGenre = {
-  name: string;
-};
-
 export interface IMovie {
-  id: number;
-  name: string;
-  score: string;
-  genres: IGenre[];
-  overview: string;
-  recommended?: unknown[];
+  imdb_id: string
+  title:string
 }
 
 export interface IMovieList {

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { gql } from '@apollo/client'
 import { WikiApiResult } from '../types/WikiResult'
 import { WIKI_BASE_URL } from '../constants/development'
+import 'dotenv/config'
 
 const WIKI_API_URL = `${WIKI_BASE_URL}/w/api.php`
 
@@ -25,7 +25,7 @@ const getWikiMovieObject = (url: string) => {
   })
 }
 
-export const getMovieInfoFromWiki = async (movieTitle: string):Promise<WikiApiResult> => {
+export const getMovieInfoFromWiki = async (movieTitle: string): Promise<WikiApiResult> => {
   const extraQueryStrings = ['+film', '+movie', '']
   let result = {}
   for (let i = 0; i < extraQueryStrings.length; i++) {
@@ -37,6 +37,7 @@ export const getMovieInfoFromWiki = async (movieTitle: string):Promise<WikiApiRe
   return result
 }
 
+/**
 export const createQuery = (term: string) => gql`
 query SearchMovies {
   searchMovies(query: "${term}") {
@@ -51,7 +52,7 @@ query SearchMovies {
   }
 }
 `
-export const getMovie = (id:string) => gql`
+export const getMovie = (id: string) => gql`
 query getMovie {
   movie(id: ${parseInt(id)}) {
     id
@@ -70,4 +71,22 @@ query getMovie {
       name
     }
   }
-}`
+}` */
+
+export const getMovie = async (id: string) => {
+  try {
+    const options = {
+      method: 'GET',
+      url: `https://moviesminidatabase.p.rapidapi.com/movie/imdb_id/byTitle/${id}`,
+      headers: {
+        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+      }
+    }
+
+    const response = await axios.request(options)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}

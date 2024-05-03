@@ -5,8 +5,9 @@
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .heading {
-        margin-left: $searchResultPadding;
+        text-align: center;
+        align-items: center;
     }
 }

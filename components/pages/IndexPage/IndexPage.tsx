@@ -42,20 +42,18 @@ const IndexPage: React.FC = () => {
     })
   }
 
-  const onMovieClick = async (event: React.MouseEvent<HTMLDivElement>) => {
-    const element = event.target as HTMLDivElement
-    const value = element.getAttribute('data-title')
-    if (!value) {
+  const onMovieClick = async (movieTitle: string) => {
+    if (!movieTitle) {
       resetWikiValues()
       return
     }
-    const moviesObject: WikiApiResult = await getMovieInfoFromWiki(value)
+    const moviesObject: WikiApiResult = await getMovieInfoFromWiki(movieTitle)
     if (!moviesObject) {
       resetWikiValues()
       return
     }
     setWikiArticles(moviesObject)
-    setWikiSearchString(value)
+    setWikiSearchString(movieTitle)
   }
 
   return (

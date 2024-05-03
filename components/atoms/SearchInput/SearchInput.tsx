@@ -10,7 +10,7 @@ const SearchInput: React.FC<ISearchInput> = ({ onChange, query }) => {
   return (
     <div className={styles.container}>
       <div>
-          <label className={styles.label} htmlFor="searchMoviesInput">Search movies</label>
+          <label className={styles.label} htmlFor="searchMoviesInput">Search movies by title</label>
         </div>
         <div>
         <div>

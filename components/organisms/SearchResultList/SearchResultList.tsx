@@ -1,22 +1,41 @@
-import React from 'react'
-import { useQuery } from '@apollo/client'
+import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { SearchResult } from '../../atoms/SearchResult'
-import { IMovieList } from '../../../types/Movie'
-import { createQuery } from '../../../api'
+import { IMovie } from '../../../types/Movie'
+import { getMovie } from '../../../api'
 import { Loading } from '../../atoms/Loading'
 import { Header } from '../../atoms/Header'
 
 interface ISearchResultList {
   query: string
-  onMovieClick(event: React.MouseEvent<HTMLDivElement>): void
+  onMovieClick(movieTitle: string): void
 }
 
 const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClick }) => {
-  const { data, loading, error } = useQuery<IMovieList>(createQuery(query), { errorPolicy: 'ignore' })
+  const [data, setData] = useState<any>({})
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState()
 
-  if (loading) return <Loading/>
+  const loadMovies = async (query:string) => {
+    try {
+      setIsLoading(true)
+      const response = await getMovie(query)
+
+      setData(response)
+
+      setIsLoading(false)
+    } catch (e) {
+      setIsLoading(false)
+      setError(e)
+    }
+  }
+
+  useEffect(() => {
+    loadMovies(query)
+  }, [query])
+
+  if (isLoading) return <Loading/>
   if (error) return <pre>{error.message}</pre>
   if (!data) return <div>Please type a movie title and hit the Submit button.</div>
 
@@ -26,16 +45,13 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClic
         Movie search results
         </Header>
       <div>
-        {data.searchMovies &&
-        data.searchMovies.map(({ name: movieTitle, genres, score, id, overview }) => {
+        {data && data.results &&
+        data.results.map(({ imdb_id: id, title }:IMovie) => {
           return (
             <SearchResult
               id={id}
               key={uuidv4()}
-              movieTitle={movieTitle}
-              score={score}
-              genres={genres}
-              overview={overview}
+              movieTitle={title}
               onMovieClick={onMovieClick}
             />
           )

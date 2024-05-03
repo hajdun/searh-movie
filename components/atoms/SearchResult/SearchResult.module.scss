@@ -3,8 +3,6 @@
 .searchResultContainer {
     background-color: $searchResultBackgroundColor;
     margin-bottom: 30px;
-    min-width:400px;
-    max-width: 600px;
     min-height: 80px;
     max-height: 1000px;
     padding: $searchResultPadding;
@@ -31,19 +29,17 @@
 .name {
     width: 260px;
     margin-right: 20px;
-    cursor: pointer;
 }
 
-.score {
-    width: 20px;
-}
-
-.genre {
-    width: 300px;
-    font-size: $searchResultGenreFontSize;
-}
-
- .overview {
-    padding-top: 10px;
-    padding-bottom: 10px;
+ @media screen and (min-width: 801px) {
+    .searchResultContainer {
+       width: 400px;
+    }
  }
+ 
+ @media screen and (max-width: 800px) {
+    .searchResultContainer {
+       width: 100%;
+    }
+ }
+ 

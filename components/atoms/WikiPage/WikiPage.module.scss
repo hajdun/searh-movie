@@ -1,13 +1,18 @@
 @import '../../../styles/variables.scss';
 
 .container {
-   width: 400px;
    margin-bottom: 40px;
    background-color: $wikiResultBackgroundColor;
    padding: $searchResultPadding;
 }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 801px) {
+   .container {
+      width: 400px;
+   }
+}
+
+@media screen and (max-width: 800px) {
    .container {
       width: 100%;
    }
