@@ -15,7 +15,7 @@ interface ISearchResultList {
 const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClick }) => {
   const [data, setData] = useState<any>({})
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState()
+  const [error, setError] = useState<any>(undefined)
 
   const loadMovies = async (query:string) => {
     try {
@@ -25,7 +25,7 @@ const SearchResultList: React.FC<ISearchResultList> = ({ query = '', onMovieClic
       setData(response)
 
       setIsLoading(false)
-    } catch (e) {
+    } catch (e:any) {
       setIsLoading(false)
       setError(e)
     }

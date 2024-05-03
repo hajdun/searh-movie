@@ -4,7 +4,7 @@ import { Button } from '../Button'
 import Link from 'next/link'
 
 interface ISearchResult {
-  id: number
+  id: string
   movieTitle: string;
   onMovieClick(movieTitle: string): void
 }

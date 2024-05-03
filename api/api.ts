@@ -74,7 +74,7 @@ query getMovie {
 }` */
 
 export const getMovie = async (id: string) => {
-  const apiKey: string = process.env.NEXT_PUBLIC_API_KEY | ''
+  const apiKey: string = process.env.NEXT_PUBLIC_API_KEY || ''
   if (!apiKey) {
     throw new Error('Api is not configured')
   }
