@@ -74,17 +74,19 @@ query getMovie {
 }` */
 
 export const getMovie = async (id: string) => {
+  const apiKey: string = process.env.NEXT_PUBLIC_API_KEY | ''
+  if (!apiKey) {
+    throw new Error('Api is not configured')
+  }
   try {
-    const options = {
+    const response = await axios.request({
       method: 'GET',
       url: `https://moviesminidatabase.p.rapidapi.com/movie/imdb_id/byTitle/${id}`,
       headers: {
-        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+        'X-RapidAPI-Key': apiKey,
         'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
       }
-    }
-
-    const response = await axios.request(options)
+    })
     return response.data
   } catch (error) {
     console.error(error)
